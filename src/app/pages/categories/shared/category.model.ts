@@ -8,4 +8,8 @@ export class Category extends BaseResource {
   ) {
     super()
   }
+
+  static fromJson(jsonData: any): Category {
+    return Object.assign(new Category, jsonData)
+  }
 }

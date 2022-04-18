@@ -9,6 +9,6 @@ import { environment } from "src/environments/environment";
 })
 export class CategoryService extends BaseResourceService<Category> {
   constructor(protected injector: Injector) {
-    super(environment.Api, injector);
+    super(environment.Api, injector, Category.fromJson);
   }
 }
