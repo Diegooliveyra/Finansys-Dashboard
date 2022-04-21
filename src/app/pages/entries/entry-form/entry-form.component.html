@@ -147,12 +147,7 @@
     </div>
   </div>
 
-  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessagers">
-    <strong>Erro no Servidor</strong>
-    <ul>
-      <li *ngFor="let error of serverErrorMessagers">{{ error }}</li>
-    </ul>
-  </div>
+  <app-server-error-messages [serverErrorMessages]="serverErrorMessages"></app-server-error-messages>
 
   <button
     [disabled]="submitiingForm || resourceForm.invalid"

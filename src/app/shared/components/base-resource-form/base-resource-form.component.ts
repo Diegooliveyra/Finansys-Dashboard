@@ -13,7 +13,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResource>
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
-  serverErrorMessagers: string[] = null;
+  serverErrorMessages: string[] = null;
   submitiingForm: boolean = false;
 
   protected route: ActivatedRoute;
@@ -123,8 +123,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResource>
   protected actionForError(error: any) {
     toastr.error("Ocorreu um erro ao processar a solicitação");
     if (error.status === 422)
-      this.serverErrorMessagers = JSON.parse(error._body).errors;
-    else this.serverErrorMessagers = ["Falha na comunicação com o servidor"];
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    else this.serverErrorMessages = ["Falha na comunicação com o servidor"];
   }
 
   protected abstract buildResourceForm(): void
