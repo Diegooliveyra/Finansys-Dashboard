@@ -1,3 +1,81 @@
-<p>
-  reports works!
-</p>
+<app-bread-crumb
+    [items]="[
+        {text: 'Relatório de recita e despesas'}
+    ]"
+></app-bread-crumb>
+
+<app-page-header
+    pageTitle="Relatório de recita e despesas"
+    [showButton]="false"
+></app-page-header>
+
+<div class="card">
+    <div class="card-header">
+        Selecione o mês e ano para gerar o relatório
+    </div>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label for="month" id="month">Mês</label>
+                <select name="month" id="month" class="form-control" #month>
+                    <option value="">Selecione um mês</option>
+                    <option *ngFor="let iterator of months" value="{{iterator.value}}">{{ iterator.month }}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="year" id="year">Ano</label>
+                <select name="year" id="year" class="form-control" #year>
+                    <option value="">Selecione um ano</option>
+                    <option *ngFor="let iterator of years" value="{{iterator.year}}"> {{ iterator.year }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md d-flex justify-content-end">
+                <button
+                    type="button"
+                    (click)="generateReports()"
+                    class="btn btn-primary"
+                >Gerar Relatórios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-deck my-5">
+    <div class="card text-center text-white bg-success">
+        <div class="card-header">
+           TOTAL DE RECEITAS
+        </div>
+        <div class="card-body">
+            <div class="card-title">{{revenueTotal}}</div>
+        </div>
+    </div>
+    <div class="card text-center text-white bg-danger">
+        <div class="card-header">
+           TOTAL DE DESPESAS
+        </div>
+        <div class="card-body">
+            <div class="card-title">{{expanseTotal}}</div>
+        </div>
+    </div>
+    <div class="card text-center text-white bg-info">
+        <div class="card-header">
+           SALDO
+        </div>
+        <div class="card-body">
+            <div class="card-title">{{balance}}</div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row my-5">
+    <div class="col-md-6">
+        <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
+    </div>
+    <div class="col-md-6">
+        <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
+    </div>
+</div>
